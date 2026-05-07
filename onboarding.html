@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Video Downloader for Webex — Get Started</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cyan:         #00BCEB;
+      --blue:         #0070D2;
+      --green:        #00D09C;
+      --dark:         #13161F;
+      --text:         rgba(255,255,255,0.93);
+      --muted:        rgba(255,255,255,0.40);
+      --card:         rgba(255,255,255,0.06);
+      --border:       rgba(0,188,235,0.15);
+      --grad-primary: linear-gradient(135deg, #00BCEB, #0070D2);
+      --shadow-cyan:  0 4px 20px rgba(0,188,235,0.30);
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--dark);
+      background-image:
+        radial-gradient(ellipse 70% 55% at 5%   0%,   rgba(0,188,235,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 55% 45% at 95%  100%, rgba(0,208,156,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse 45% 35% at 50%  55%,  rgba(0,112,210,0.10) 0%, transparent 60%);
+      font-family: -apple-system, "SF Pro Display", "SF Pro Text", BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Grain */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)'/%3E%3C/svg%3E");
+      opacity: 0.055;
+      pointer-events: none;
+      z-index: 0;
+      animation: grain 0.6s steps(2) infinite;
+    }
+
+    @keyframes grain {
+      0%  { transform: translate(0,0) }
+      25% { transform: translate(-3%,-5%) }
+      50% { transform: translate(5%,-2%) }
+      75% { transform: translate(-2%, 4%) }
+      100%{ transform: translate(4%, 2%) }
+    }
+
+    .page { position: relative; z-index: 1; width: 100%; max-width: 520px; }
+
+    /* Header */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--grad-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-cyan);
+    }
+
+    .brand-text h1 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+    }
+
+    .brand-text p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* Steps */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+    }
+
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--grad-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-cyan);
+    }
+
+    .step-body { padding-top: 5px; }
+
+    .step-title {
+      font-size: 14px;
+      font-weight: 650;
+      letter-spacing: -0.2px;
+      margin-bottom: 4px;
+    }
+
+    .step-desc {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .step-desc strong {
+      color: var(--cyan);
+      font-weight: 600;
+    }
+
+    /* Tip */
+    .tip {
+      background: rgba(0,188,235,0.07);
+      border: 1px solid rgba(0,188,235,0.18);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 40px;
+    }
+
+    .tip strong { color: var(--cyan); font-weight: 600; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    footer a {
+      color: var(--cyan);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer a:hover { opacity: 0.72; }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="brand">
+      <div class="logo">↓</div>
+      <div class="brand-text">
+        <h1>Video Downloader for Webex</h1>
+        <p>How to download a recording in 4 steps</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Open a Webex recording</div>
+          <div class="step-desc">Navigate to any recorded lesson or meeting on <strong>webex.com</strong>.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Press play</div>
+          <div class="step-desc">Let the video play for <strong>a few seconds</strong>. The extension listens for the video stream in the background.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Click the extension icon</div>
+          <div class="step-desc">Open the <strong>Video Downloader for Webex</strong> popup from the Chrome toolbar. You'll see the detected MP4 file.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Download</div>
+          <div class="step-desc">Hit <strong>Download</strong> — Chrome will save the MP4 directly to your computer.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">
+      <strong>Tip:</strong> When a video is detected, a badge number appears on the extension icon and a notification pops up — you don't need to keep the popup open while playing.
+    </div>
+
+    <footer>
+      by <a href="https://github.com/MatteoLeonesi" target="_blank">@MatteoLeonesi</a>
+    </footer>
+
+  </div>
+</body>
+</html>
