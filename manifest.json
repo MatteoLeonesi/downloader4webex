@@ -5,7 +5,6 @@
   "description": "Download Webex recordings directly from your browser",
   "permissions": [
     "activeTab",
-    "scripting",
     "downloads",
     "webRequest",
     "storage",
