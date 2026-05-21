@@ -1,6 +1,6 @@
 # Video Downloader for Webex
 
-A Chrome extension that detects and downloads MP4 recordings from Webex pages with one click.
+A [Chrome extension](https://chromewebstore.google.com/detail/video-downloader-for-webe/memhljjbaaiodncebodgmgcmhcdnmhha) that detects and downloads MP4 recordings from Webex pages with one click.
 
 ## How it works
 
@@ -10,10 +10,6 @@ A Chrome extension that detects and downloads MP4 recordings from Webex pages wi
 4. Hit **Download** — the MP4 is saved to your computer
 
 A badge counter and desktop notification appear automatically when a video is detected.
-
-## Installation
-
-soon
 
 ## Permissions
 
